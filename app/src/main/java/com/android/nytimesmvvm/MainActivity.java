@@ -15,7 +15,7 @@ import com.android.nytimesmvvm.view.ArticleListFragment;
 
 public class MainActivity extends AppCompatActivity implements FragmentCallback {
 
-    private boolean twoPane = false;
+    private boolean mTwoPane = false;
     private FragmentManager mFragmentManager;
     private ProgressDialog mProgressDialog;
 
@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback 
 
         FrameLayout detailLayout = this.findViewById(R.id.container_detail);
         if(detailLayout != null)
-            twoPane = true;
+            mTwoPane = true;
 
         //Adding List Fragment
         final Fragment articleListFragment = new ArticleListFragment();
         mFragmentManager.beginTransaction().add(R.id.container, articleListFragment).commit();
 
-        if(twoPane){
+        if(mTwoPane){
             //Adding List Fragment
             Fragment detailFragment = new ArticleDetailFragment();
             mFragmentManager.beginTransaction().add(R.id.container_detail, detailFragment).commit();
@@ -98,12 +98,20 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback 
 
     @Override
     public boolean isTwoPane() {
-        return twoPane;
+        return mTwoPane;
+    }
+
+    @Override
+    public void updateRightPane(Fragment targetFragment) {
+        mFragmentManager.beginTransaction().add(R.id.container_detail, targetFragment).addToBackStack(null).commit();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        if(mTwoPane) {
+            this.finish();
+        }
 
     }
 }

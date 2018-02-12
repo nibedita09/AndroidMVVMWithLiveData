@@ -74,6 +74,14 @@ public class ArticleListFragment extends BaseFragment{
                     mFragmentCallback.dismissSpinner();
                     mBinding.setIsLoading(false);
                     mArticleListAdapter.setArticleList(articles);
+
+                    if(mFragmentCallback.isTwoPane()) {
+                        final Fragment detailFragment = new ArticleDetailFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("url", articles.get(0).getUrl());
+                        detailFragment.setArguments(bundle);
+                        mFragmentCallback.updateRightPane(detailFragment);
+                    }
                 }else{
                     mBinding.setIsLoading(true);
                 }
@@ -93,13 +101,13 @@ public class ArticleListFragment extends BaseFragment{
     private final ArticleClickCallback mArticleClickCallback = new ArticleClickCallback() {
         @Override
         public void onClick(String url) {
+            final Fragment detailFragment = new ArticleDetailFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("url", url);
+            detailFragment.setArguments(bundle);
             if(mFragmentCallback.isTwoPane()){
-
+               mFragmentCallback.updateRightPane(detailFragment);
             }else{
-                final Fragment detailFragment = new ArticleDetailFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("url", url);
-                detailFragment.setArguments(bundle);
                 mFragmentCallback.navigateTo(detailFragment);
             }
         }

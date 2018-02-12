@@ -36,10 +36,13 @@ public class ArticleDetailFragment extends BaseFragment {
             return mView;
 
         ProgressBar progressBar = mView.findViewById(R.id.progressBar);
-        String url = getArguments().getString("url");
-        WebView webView = mView.findViewById(R.id.web);
-        webView.setWebViewClient(new AppWebViewClient(progressBar));
-        webView.loadUrl(url);
+        Bundle bundle = getArguments();
+        if(bundle != null) {
+            String url = bundle.getString("url");
+            WebView webView = mView.findViewById(R.id.web);
+            webView.setWebViewClient(new AppWebViewClient(progressBar));
+            webView.loadUrl(url);
+        }
         return mView;
     }
 }

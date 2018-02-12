@@ -12,8 +12,8 @@
     </WebView>
     <ProgressBar
         android:id="@+id/progressBar"
-        android:layout_width="@dimen/dimen_50"
-        android:layout_height="@dimen/dimen_50"
+        android:layout_width="@dimen/dp_50"
+        android:layout_height="@dimen/dp_50"
         android:layout_gravity="center"
         android:indeterminateTint="@color/colorPrimary"
         android:visibility="gone"/>
