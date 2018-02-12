@@ -56,7 +56,7 @@ The app uses a Model-View-ViewModel (MVVM) architecture for the presentation lay
 
 
 #### UnitTesting
-*Unit Testing(JUnit) as the Viewmodel(Presentation Layer) holds LiveData which is Android architectural component.
+*Unit Testing(JUnit) scope is less as the Viewmodel(Presentation Layer) holds LiveData which is Android architectural component.
 *Instrumentation test cases can be written using Espress
 
 
