@@ -1,8 +1,5 @@
 package com.android.nytimesmvvm.common.error;
 
-/**
- * Created by Satish Mulay on 3/24/2017.
- */
 
 public class BaseURLEmptyException extends Exception {
 
